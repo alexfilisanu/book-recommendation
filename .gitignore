@@ -1,0 +1,30 @@
+# Ignore generated directories
+bin/
+build/
+out/
+target/
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+*.iml
+
+# Ignore virtual environment
+venv/
+
+# Ignore generated files
+*.pyc
+__pycache__/
+
+# Node
+node_modules/
+
+# Angular
+.angular/
+
+# Ignore logs
+*.log
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
