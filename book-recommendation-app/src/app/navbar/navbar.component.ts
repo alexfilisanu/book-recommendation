@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
-import {BooksService} from "../books/books.service";
 import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
@@ -17,7 +16,8 @@ export class NavbarComponent {
   public searchBooksFormGroup!: FormGroup;
   public searchQuery: string = '';
 
-  constructor(private booksService: BooksService, private router: Router, private formBuilder: FormBuilder) {}
+  constructor(private router: Router, private formBuilder: FormBuilder) {
+  }
 
   ngOnInit(): void {
     this.searchBooksFormGroup = this.formBuilder.group({
@@ -29,17 +29,8 @@ export class NavbarComponent {
     this.searchQuery = this.searchBooksFormGroup.get('searchQuery')?.value;
 
     if (this.searchQuery.trim()) {
-      this.booksService.getBooks(this.searchQuery).subscribe({
-        next: (response) => {
-          console.log('Search results:', response.books);
-          // Pass data to BooksComponent or handle state management
-          this.router.navigate(['/books'], {queryParams: {q: this.searchQuery}})
-            .catch(error => console.error('Error navigating to books:', error));
-        },
-        error: (error) => {
-          console.error('Search error:', error);
-        }
-      });
+      this.router.navigate(['/books'], {queryParams: {q: this.searchQuery}})
+        .catch(error => console.error('Error navigating to books:', error));
     }
   }
 }

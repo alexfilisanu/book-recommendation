@@ -54,6 +54,10 @@
 
 .pagination {
   justify-content: center;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
 }
 
 .pagination button {

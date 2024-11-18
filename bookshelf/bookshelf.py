@@ -1,5 +1,4 @@
 import os
-from re import search
 
 import psycopg2
 from flask import Flask, request, jsonify
