@@ -1,0 +1,45 @@
+version: "3.8"
+services:
+  book-recommendation-app:
+    build:
+      context: ./book-recommendation-app
+      dockerfile: Dockerfile
+    container_name: book-recommendation-app
+    ports:
+      - "4200:4200"
+    depends_on:
+      - bookshelf
+
+  bookshelf:
+    build:
+      context: ./bookshelf
+      dockerfile: Dockerfile
+    container_name: bookshelf
+    ports:
+      - "3050:3050"
+    environment:
+      POSTGRES_HOST: book-recommendation-db
+      POSTGRES_DB: book-recommendation-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    depends_on:
+      - book-recommendation-db
+
+  book-recommendation-db:
+    image: postgres:15
+    container_name: book-recommendation-db
+    ports:
+      - "5123:5432"
+    environment:
+      POSTGRES_DB: book-recommendation-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+      - ./database/init-database.sql:/docker-entrypoint-initdb.d/init-database.sql
+      - ./database/filtered_books.csv:/docker-entrypoint-initdb.d/books.csv
+      - ./database/filtered_users.csv:/docker-entrypoint-initdb.d/users.csv
+      - ./database/filtered_ratings.csv:/docker-entrypoint-initdb.d/ratings.csv
+
+volumes:
+  postgres-db:

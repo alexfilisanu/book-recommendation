@@ -10,7 +10,7 @@ target/
 *.iml
 
 # Ignore virtual environment
-venv/
+.venv/
 
 # Ignore generated files
 *.pyc

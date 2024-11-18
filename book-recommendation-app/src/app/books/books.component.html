@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Books</title>
+
+  <link rel="stylesheet" href="../../assets/css/bootstrap.css"/>
+  <link rel="stylesheet" href="../../assets/css/all.min.css"/>
+</head>
+
+<body>
+<div class="bookshelf-container">
+  <img src="../../assets/images/bookshelf.jpg" alt="dashboard">
+  <div class="books-container">
+    <div class="row">
+      <ng-container *ngFor="let book of books; let i = index">
+        <div class="col-md-3">
+          <div class="book">
+            <img [src]="book.Image_URL_L" alt="{{ book.Book_Title }}">
+            <div class="book-title" [innerHTML]="book.Book_Title"></div>
+            <div class="book-author">{{ book.Book_Author }}</div>
+            <app-star-rating [rating]="getRating(book.Average_Rating)"></app-star-rating>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="pagination">
+      <button (click)="previousPage()" [disabled]="currentPage <= 1">Previous</button>
+      <button (click)="nextPage()" [disabled]="currentPage >= totalPages">Next</button>
+    </div>
+  </div>
+</div>
+</body>
