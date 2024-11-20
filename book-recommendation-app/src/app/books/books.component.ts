@@ -1,15 +1,13 @@
 import {Component} from '@angular/core';
-import {NgForOf, NgIf} from "@angular/common";
 import {BooksService} from './books.service';
 import {StarRatingComponent} from "../star-rating/star-rating.component";
 import {ActivatedRoute} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-books',
   standalone: true,
   imports: [
-    NgForOf,
-    NgIf,
     StarRatingComponent
   ],
   templateUrl: './books.component.html',
@@ -23,10 +21,10 @@ export class BooksComponent {
   private booksPerPage: number = 8;
   private searchQuery: string = '';
 
-  constructor(private booksService: BooksService, private route: ActivatedRoute) {
+  constructor(private booksService: BooksService, private route: ActivatedRoute, private router: Router) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       const { q = '' } = params;
       this.searchQuery = q;
@@ -48,7 +46,7 @@ export class BooksComponent {
     });
   }
 
-  private getBooks(page: number = this.currentPage) {
+  private getBooks(page: number = this.currentPage): void {
     this.booksService.getBooks(this.searchQuery, page, this.booksPerPage).subscribe({
       next: (response) => {
         this.books = response.books;
@@ -65,11 +63,16 @@ export class BooksComponent {
     return roundedRating / 2;
   }
 
-  public nextPage() {
+  public nextPage(): void {
     this.getBooks(++this.currentPage);
   }
 
-  public previousPage() {
+  public previousPage(): void {
     this.getBooks(--this.currentPage);
+  }
+
+  public viewBookDetails(isbn: string): void {
+    this.router.navigate(['/book', isbn])
+      .catch(error => console.error('Error navigating to book details:', error));
   }
 }

@@ -65,8 +65,6 @@ def get_books():
             b.ISBN,
             b.Book_Title,
             b.Book_Author,
-            b.Year_Of_Publication,
-            b.Publisher,
             b.Image_URL_L,
             COALESCE(AVG(r.Book_Rating), 0) AS Average_Rating
         FROM 
@@ -97,16 +95,58 @@ def get_books():
                 "ISBN": row[0],
                 "Book_Title": row[1],
                 "Book_Author": row[2],
-                "Year_Of_Publication": row[3],
-                "Publisher": row[4],
-                "Image_URL_L": row[5],
-                "Average_Rating": round(row[6], 2),
+                "Image_URL_L": row[3],
+                "Average_Rating": round(row[4], 2),
             }
             for row in books
         ]
 
         conn.close()
         return jsonify({"books": books_list}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/book/<isbn>/', methods=['GET'])
+def get_book(isbn):
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        query = f"""
+        SELECT
+            b.ISBN, 
+            b.Book_Title,
+            b.Book_Author,
+            b.Year_Of_Publication,
+            b.Publisher,
+            b.Image_URL_L,
+            COALESCE(AVG(r.Book_Rating), 0) AS Average_Rating
+        FROM 
+            books b
+        LEFT JOIN 
+            ratings r ON b.ISBN = r.ISBN
+        WHERE
+            b.ISBN = %s
+        GROUP BY 
+            b.ISBN;
+        """
+        cursor.execute(query, (isbn,))
+        book = cursor.fetchone()
+
+        book_dict = {
+            "ISBN": book[0],
+            "Book_Title": book[1],
+            "Book_Author": book[2],
+            "Year_Of_Publication": book[3],
+            "Publisher": book[4],
+            "Image_URL_L": book[5],
+            "Average_Rating": round(book[6], 2),
+        }
+
+        conn.close()
+        return jsonify({"book": book_dict}), 200
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500

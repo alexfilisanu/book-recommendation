@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book</title>
+
+  <link rel="stylesheet" href="../../assets/css/bootstrap.css"/>
+  <link rel="stylesheet" href="../../assets/css/all.min.css"/>
+</head>
+
+<body>
+<div class="bookshelf-container">
+  <img src="../../assets/images/bookshelf.jpg" alt="dashboard">
+  <div class="book-container">
+    <div class="row">
+      <div class="col-md-6">
+        <img [src]="book.Image_URL_L" alt="{{ book.Book_Title }}">
+        <app-star-rating [rating]="getRating(book.Average_Rating)"></app-star-rating>
+      </div>
+      <div class="col-md-6">
+        <div class="book-title" [innerHTML]="book.Book_Title"></div>
+        <p> Author: {{ book.Book_Author }}</p>
+        <p> Publisher: {{ book.Publisher }} </p>
+        <p> Year of publication: {{ book.Year_Of_Publication }} </p>
+        <p> ISBN: {{ book.ISBN }} </p>
+        <div class="review-container">
+          @for (_ of [].constructor(11); track $index) {
+            <button class="rating-btn">{{ $index }}</button>
+          }
+          <button class="send-review-btn">Send Review</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

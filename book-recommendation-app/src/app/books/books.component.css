@@ -20,7 +20,7 @@
   border-radius: 30px;
   background: rgba(208, 162, 116, 0.7);
   height: 325px;
-  cursor: default;
+  cursor: pointer;
 }
 
 .book img {

@@ -13,16 +13,16 @@
   <img src="../../assets/images/bookshelf.jpg" alt="dashboard">
   <div class="books-container">
     <div class="row">
-      <ng-container *ngFor="let book of books; let i = index">
+      @for (book of books; track book) {
         <div class="col-md-3">
-          <div class="book">
+          <div class="book" (click)="viewBookDetails(book.ISBN)">
             <img [src]="book.Image_URL_L" alt="{{ book.Book_Title }}">
             <div class="book-title" [innerHTML]="book.Book_Title"></div>
             <div class="book-author">{{ book.Book_Author }}</div>
             <app-star-rating [rating]="getRating(book.Average_Rating)"></app-star-rating>
           </div>
         </div>
-      </ng-container>
+      }
     </div>
     <div class="pagination">
       <button (click)="previousPage()" [disabled]="currentPage <= 1">Previous</button>

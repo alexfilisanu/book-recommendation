@@ -1,14 +1,9 @@
 import {Component, Input} from '@angular/core';
-import {NgClass, NgForOf, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-star-rating',
   standalone: true,
-  imports: [
-    NgForOf,
-    NgIf,
-    NgClass
-  ],
+  imports: [],
   templateUrl: './star-rating.component.html',
   styleUrl: './star-rating.component.css'
 })
