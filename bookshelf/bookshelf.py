@@ -3,10 +3,15 @@ import os
 import psycopg2
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import pandas as pd
+import pickle
 
 app = Flask(__name__)
 CORS(app)
 
+book_pivot = pd.read_pickle("book_pivot.pkl")
+with open("model.pkl", "rb") as f:
+    model = pickle.load(f)
 
 def get_db_connection():
     conn = psycopg2.connect(
@@ -147,6 +152,22 @@ def get_book(isbn):
 
         conn.close()
         return jsonify({"book": book_dict}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/recommendations/book/<string:title>', methods=['GET'])
+def get_book_recommendations(title):
+    try:
+        if title not in book_pivot.index:
+            return jsonify({"error": "Book title not found"}), 404
+
+        distances, suggestions = model.kneighbors(
+            book_pivot.loc[title].values.reshape(1, -1), n_neighbors=7
+        )
+
+        recommendations = [book_pivot.index[i] for i in suggestions[0][1:7]]
+        return jsonify({"recommendations": recommendations}), 200
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
