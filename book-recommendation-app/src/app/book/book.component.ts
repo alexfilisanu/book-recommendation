@@ -45,7 +45,7 @@ export class BookComponent {
   }
 
   public sendReview(): void {
-    this.router.navigate([`/book/recommendations/${this.book.ISBN}`])
+    this.router.navigate([`/book/recommendations/${this.book.ISBN}`], {queryParams: {title: this.book.Book_Title}})
       .catch(error => console.error('Error navigating to book recommendations', error));
   }
 }

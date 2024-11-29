@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { BookRecommendationsService } from './book-recommendations.service';
+import {Component} from '@angular/core';
+import {BookRecommendationsService} from './book-recommendations.service';
 import {ActivatedRoute, Router} from "@angular/router";
 import {StarRatingComponent} from "../star-rating/star-rating.component";
 
@@ -15,6 +15,7 @@ import {StarRatingComponent} from "../star-rating/star-rating.component";
 export class BookRecommendationsComponent {
 
   public recommendations: any[] = [];
+  public bookTitle: string = '';
 
   constructor(private route: ActivatedRoute, private bookRecommendationsService: BookRecommendationsService, private router: Router) {
   }
@@ -24,6 +25,10 @@ export class BookRecommendationsComponent {
       const {isbn} = params;
       this.getBooks(isbn);
     })
+    this.route.queryParams.subscribe(params => {
+      const {title} = params;
+      this.bookTitle = title;
+    });
   }
 
   private getBooks(isbn: string): void {
