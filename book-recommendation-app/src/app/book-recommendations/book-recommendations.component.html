@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book</title>
+
+  <link rel="stylesheet" href="../../assets/css/bootstrap.css"/>
+  <link rel="stylesheet" href="../../assets/css/all.min.css"/>
+</head>
+
+<body>
+<div class="bookshelf-container">
+  <img src="../../assets/images/bookshelf.jpg" alt="dashboard">
+  <div class="books-container">
+    <div class="message">
+      Thank you for your reviews! <br> More books like this:
+    </div>
+    <div class="row">
+      @for (book of recommendations; track book) {
+        <div class="col-md-3">
+          <div class="book" (click)="viewBookDetails(book.ISBN)">
+            <img [src]="book.Image_URL" alt="{{ book.Book_Title }}">
+            <div class="book-title" [innerHTML]="book.Book_Title"></div>
+            <div class="book-author">{{ book.Book_Author }}</div>
+            <app-star-rating [rating]="getRating(book.Average_Rating)"></app-star-rating>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+</body>

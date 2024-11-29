@@ -4,9 +4,7 @@ CREATE TABLE IF NOT EXISTS books (
     Book_Author TEXT,
     Year_Of_Publication INTEGER,
     Publisher TEXT,
-    Image_URL_S TEXT,
-    Image_URL_M TEXT,
-    Image_URL_L TEXT
+    Image_URL TEXT
 );
 
 CREATE TABLE IF NOT EXISTS users (
@@ -23,7 +21,7 @@ CREATE TABLE IF NOT EXISTS ratings (
 );
 
 
-COPY books (ISBN, Book_Title, Book_Author, Year_Of_Publication, Publisher, Image_URL_S, Image_URL_M, Image_URL_L)
+COPY books (ISBN, Book_Title, Book_Author, Year_Of_Publication, Publisher, Image_URL)
 FROM '/docker-entrypoint-initdb.d/books.csv'
 DELIMITER ',' CSV HEADER;
 

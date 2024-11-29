@@ -1,17 +1,15 @@
 import os
-
+import pickle
 import psycopg2
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import pandas as pd
-import pickle
 
 app = Flask(__name__)
 CORS(app)
 
-book_pivot = pd.read_pickle("book_pivot.pkl")
-with open("model.pkl", "rb") as f:
-    model = pickle.load(f)
+with open('knn.pkl', 'rb') as model_file, open('pivot_table.pkl', 'rb') as pivot_file:
+    knn = pickle.load(model_file)
+    pivot_table = pickle.load(pivot_file)
 
 def get_db_connection():
     conn = psycopg2.connect(
@@ -70,7 +68,7 @@ def get_books():
             b.ISBN,
             b.Book_Title,
             b.Book_Author,
-            b.Image_URL_L,
+            b.Image_URL,
             COALESCE(AVG(r.Book_Rating), 0) AS Average_Rating
         FROM 
             books b
@@ -100,7 +98,7 @@ def get_books():
                 "ISBN": row[0],
                 "Book_Title": row[1],
                 "Book_Author": row[2],
-                "Image_URL_L": row[3],
+                "Image_URL": row[3],
                 "Average_Rating": round(row[4], 2),
             }
             for row in books
@@ -126,7 +124,7 @@ def get_book(isbn):
             b.Book_Author,
             b.Year_Of_Publication,
             b.Publisher,
-            b.Image_URL_L,
+            b.Image_URL,
             COALESCE(AVG(r.Book_Rating), 0) AS Average_Rating
         FROM 
             books b
@@ -146,7 +144,7 @@ def get_book(isbn):
             "Book_Author": book[2],
             "Year_Of_Publication": book[3],
             "Publisher": book[4],
-            "Image_URL_L": book[5],
+            "Image_URL": book[5],
             "Average_Rating": round(book[6], 2),
         }
 
@@ -156,17 +154,56 @@ def get_book(isbn):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/recommendations/book/<string:title>', methods=['GET'])
-def get_book_recommendations(title):
+@app.route('/book/recommendations/<isbn>', methods=['GET'])
+def get_book_recommendations(isbn):
     try:
-        if title not in book_pivot.index:
-            return jsonify({"error": "Book title not found"}), 404
+        if isbn not in pivot_table.index:
+            return jsonify({'error': 'ISBN not found'}), 404
 
-        distances, suggestions = model.kneighbors(
-            book_pivot.loc[title].values.reshape(1, -1), n_neighbors=7
-        )
+        isbn_vector = pivot_table.loc[isbn].values.reshape(1, -1)
+        distances, indices = knn.kneighbors(isbn_vector, n_neighbors=5)
+        recommended_isbns = pivot_table.index[indices.flatten()].tolist()
+        if isbn in recommended_isbns:
+            recommended_isbns.remove(isbn)
 
-        recommendations = [book_pivot.index[i] for i in suggestions[0][1:7]]
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        query = f"""
+        SELECT
+            b.ISBN, 
+            b.Book_Title,
+            b.Book_Author,
+            b.Year_Of_Publication,
+            b.Publisher,
+            b.Image_URL,
+            COALESCE(AVG(r.Book_Rating), 0) AS Average_Rating
+        FROM 
+            books b
+        LEFT JOIN 
+            ratings r ON b.ISBN = r.ISBN
+        WHERE
+            b.ISBN = %s
+        GROUP BY 
+            b.ISBN;
+        """
+
+        recommendations = []
+        for rec_isbn in recommended_isbns:
+            cursor.execute(query, (rec_isbn,))
+            book = cursor.fetchone()
+            if book:
+                recommendations.append({
+                    "ISBN": book[0],
+                    "Book_Title": book[1],
+                    "Book_Author": book[2],
+                    "Year_Of_Publication": book[3],
+                    "Publisher": book[4],
+                    "Image_URL": book[5],
+                    "Average_Rating": round(book[6], 2),
+                })
+
+        conn.close()
         return jsonify({"recommendations": recommendations}), 200
 
     except Exception as e:

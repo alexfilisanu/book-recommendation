@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {StarRatingComponent} from "../star-rating/star-rating.component";
 import {BookService} from "./book.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-book',
@@ -15,13 +15,14 @@ import {ActivatedRoute} from "@angular/router";
 export class BookComponent {
 
   public book: any = {};
+  public selectedReview: number | null = null;
 
-  constructor(private bookService: BookService, private route: ActivatedRoute) {
+  constructor(private bookService: BookService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const { isbn } = params;
+      const {isbn} = params;
       this.getBook(isbn);
     })
   }
@@ -41,5 +42,10 @@ export class BookComponent {
     const rating = parseFloat(ratingStr);
     const roundedRating = Math.round(rating);
     return roundedRating / 2;
+  }
+
+  public sendReview(): void {
+    this.router.navigate([`/book/recommendations/${this.book.ISBN}`])
+      .catch(error => console.error('Error navigating to book recommendations', error));
   }
 }

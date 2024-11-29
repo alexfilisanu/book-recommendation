@@ -14,7 +14,7 @@
   <div class="book-container">
     <div class="row">
       <div class="col-md-6">
-        <img [src]="book.Image_URL_L" alt="{{ book.Book_Title }}">
+        <img [src]="book.Image_URL" alt="{{ book.Book_Title }}">
         <app-star-rating [rating]="getRating(book.Average_Rating)"></app-star-rating>
       </div>
       <div class="col-md-6">
@@ -25,9 +25,9 @@
         <p> ISBN: {{ book.ISBN }} </p>
         <div class="review-container">
           @for (_ of [].constructor(11); track $index) {
-            <button class="rating-btn">{{ $index }}</button>
+            <button class="rating-btn" (click)="selectedReview = $index">{{ $index }}</button>
           }
-          <button class="send-review-btn">Send Review</button>
+          <button class="send-review-btn" (click)="sendReview()" [disabled]="selectedReview === null">Send Review</button>
         </div>
       </div>
     </div>

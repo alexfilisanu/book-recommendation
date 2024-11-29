@@ -102,3 +102,8 @@
 .send-review-btn:focus {
   outline: none;
 }
+
+.send-review-btn:disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
+}
