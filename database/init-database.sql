@@ -8,7 +8,9 @@ CREATE TABLE IF NOT EXISTS books (
 );
 
 CREATE TABLE IF NOT EXISTS users (
-    User_ID INTEGER PRIMARY KEY,
+    User_ID SERIAL PRIMARY KEY,
+    Username TEXT,
+    Password TEXT,
     Location TEXT,
     Age REAL
 );

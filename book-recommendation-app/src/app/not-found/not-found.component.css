@@ -1,0 +1,42 @@
+.bookshelf-img-container {
+  filter: blur(5px);
+}
+
+.overlay-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.overlay-content i {
+  font-size: 150px;
+  color: #D0342C;
+  margin-bottom: 20px;
+}
+
+.overlay-content h1 {
+  font-size: 68px;
+  margin: 10px 0;
+  color: #FAF9F6;
+}
+
+.overlay-content p {
+  font-size: 26px;
+  color: #FAF9F6;
+}
+
+.btn-home {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
