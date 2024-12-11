@@ -9,25 +9,18 @@
 </head>
 
 <body>
-<div class="bookshelf-container">
-  <img src="../../assets/images/bookshelf.jpg" alt="dashboard">
-  <div class="books-container">
-    <div class="row">
-      @for (book of books; track book) {
-        <div class="col-md-3">
-          <div class="book" (click)="viewBookDetails(book.ISBN)">
-            <img [src]="book.Image_URL" alt="{{ book.Book_Title }}">
-            <div class="book-title" [innerHTML]="book.Book_Title"></div>
-            <div class="book-author">{{ book.Book_Author }}</div>
-            <app-star-rating [rating]="getRating(book.Average_Rating)"></app-star-rating>
-          </div>
-        </div>
-      }
-    </div>
-    <div class="pagination">
-      <button (click)="previousPage()" [disabled]="currentPage <= 1">Previous</button>
-      <button (click)="nextPage()" [disabled]="currentPage >= totalPages">Next</button>
-    </div>
+<img class="bookshelf-img-container" src="../../assets/images/bookshelf.jpg" alt="bookshelf">
+<div class="books-container">
+  <div class="row">
+    @for (book of books; track book) {
+      <div class="col-md-3">
+        <app-book-preview [book]="book"></app-book-preview>
+      </div>
+    }
+  </div>
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="currentPage <= 1">Previous</button>
+    <button (click)="nextPage()" [disabled]="currentPage >= totalPages">Next</button>
   </div>
 </div>
 </body>

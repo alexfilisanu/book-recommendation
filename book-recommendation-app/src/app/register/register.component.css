@@ -1,90 +1,10 @@
-.auth-form {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 40%;
-  height: 90%;
-  margin: auto;
-  text-align: center;
-  border-radius: 30px;
-  background: rgba(208, 162, 116, 0.9);
-  cursor: default;
-}
-
-.auth-form .form-row {
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 50px;
-  position: relative;
-}
-
-.auth-form .form-row:first-child {
-  margin-top: 50px;
-}
-
-.auth-form .form-row input {
-  background-color: transparent;
-  color: black;
-  border: solid 3px #412921;
-  border-radius: 10px;
-  font-size: 22px;
-  padding: 10px 35px;
-  width: 60%;
-}
-
-.auth-form .form-row input::placeholder {
-  color: black;
-}
-
-.auth-form .form-row input:focus {
-  outline: none;
-}
-
-.auth-form .form-row i {
-  position: absolute;
-  left: 155px;
-  color: #232323;
-}
-
-.auth-form .form-row .toggle-password {
-  position: absolute;
-  right: 47%;
-  cursor: pointer;
-}
-
-.auth-form .form-row .toggle-password i {
-  transform: translateY(-50%);
-  margin: 0;
-  padding: 0;
-}
-
-.auth-form p {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.auth-btn {
+.auth-form .confirm-btn {
   margin-top: 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px;
   font-size: 20px;
+  border-radius: 5px;
   width: 40%;
 }
 
-.auth-btn:hover {
-  background-color: #45A049;
-}
-
-.auth-btn:focus {
+.auth-form .confirm-btn:focus {
   outline: none;
-}
-
-.auth-btn:disabled {
-  background-color: lightgray;
-  cursor: not-allowed;
 }

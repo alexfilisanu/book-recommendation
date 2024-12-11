@@ -1,13 +1,13 @@
 import {Component} from '@angular/core';
 import {BookRecommendationsService} from './book-recommendations.service';
-import {ActivatedRoute, Router} from "@angular/router";
-import {StarRatingComponent} from "../star-rating/star-rating.component";
+import {ActivatedRoute} from "@angular/router";
+import {BookPreviewComponent} from "../book-preview/book-preview.component";
 
 @Component({
   selector: 'app-book-recommendations',
   standalone: true,
   imports: [
-    StarRatingComponent
+    BookPreviewComponent
   ],
   templateUrl: './book-recommendations.component.html',
   styleUrl: './book-recommendations.component.css'
@@ -17,7 +17,7 @@ export class BookRecommendationsComponent {
   public recommendations: any[] = [];
   public bookTitle: string = '';
 
-  constructor(private route: ActivatedRoute, private bookRecommendationsService: BookRecommendationsService, private router: Router) {
+  constructor(private route: ActivatedRoute, private bookRecommendationsService: BookRecommendationsService) {
   }
 
   ngOnInit(): void {
@@ -40,16 +40,5 @@ export class BookRecommendationsComponent {
         console.error('Error fetching book recommendations', error);
       }
     });
-  }
-
-  public getRating(ratingStr: string): number {
-    const rating = parseFloat(ratingStr);
-    const roundedRating = Math.round(rating);
-    return roundedRating / 2;
-  }
-
-  public viewBookDetails(isbn: string): void {
-    this.router.navigate(['/book', isbn])
-      .catch(error => console.error('Error navigating to book details:', error));
   }
 }

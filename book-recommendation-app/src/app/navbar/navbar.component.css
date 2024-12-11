@@ -1,6 +1,10 @@
 .custom-navbar-container {
-  padding: 2vh 0;
-  backdrop-filter: blur(2px);
+  position: fixed;
+  width: 100%;
+  background-color: #232420;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding-top: 10px;
+  padding-bottom: 20px;
 }
 
 .navbar-title {
@@ -62,7 +66,7 @@
 
 .search-bar:hover,
 .search-bar:focus {
-  box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
 }
 
 .search-bar::placeholder {

@@ -2,31 +2,22 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book</title>
+  <title>Book Recommendations</title>
 
   <link rel="stylesheet" href="../../assets/css/bootstrap.css"/>
   <link rel="stylesheet" href="../../assets/css/all.min.css"/>
 </head>
 
 <body>
-<div class="bookshelf-container">
-  <img src="../../assets/images/bookshelf.jpg" alt="dashboard">
-  <div class="books-container">
-    <div class="message">
-      Thank you for your review! <br> More books like "{{ bookTitle }}":
-    </div>
-    <div class="row">
-      @for (book of recommendations; track book) {
-        <div class="col-md-3">
-          <div class="book" (click)="viewBookDetails(book.ISBN)">
-            <img [src]="book.Image_URL" alt="{{ book.Book_Title }}">
-            <div class="book-title" [innerHTML]="book.Book_Title"></div>
-            <div class="book-author">{{ book.Book_Author }}</div>
-            <app-star-rating [rating]="getRating(book.Average_Rating)"></app-star-rating>
-          </div>
-        </div>
-      }
-    </div>
+<img class="bookshelf-img-container" src="../../assets/images/bookshelf.jpg" alt="bookshelf">
+<div class="books-container">
+  <h1>Thank you for your review! <br> More books like "{{ bookTitle }}":</h1>
+  <div class="row">
+    @for (book of recommendations; track book) {
+      <div class="col-md-3">
+        <app-book-preview [book]="book"></app-book-preview>
+      </div>
+    }
   </div>
 </div>
 </body>

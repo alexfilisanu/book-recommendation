@@ -1,18 +1,4 @@
-.bookshelf-container img {
-  filter: blur(1px);
-  transform: scale(1.05);
-}
-
-.bookshelf-container .dashboard-message {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.overlay-content h1 {
   font-size: 75px;
   font-weight: bold;
-  color: #fffff0;
-  text-align: center;
-  z-index: 1;
-  width: 80%;
-  cursor: default;
 }
