@@ -1,0 +1,93 @@
+.custom-navbar-container {
+  position: fixed;
+  width: 100%;
+  background-color: #232420;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.navbar-title {
+  text-align: right;
+  color: transparent;
+  font-size: 60px;
+  font-weight: bold;
+  background-image: linear-gradient(to top, #ffffff, #808080);
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-family: "Gill Sans", sans-serif;
+  cursor: default;
+}
+
+.navbar-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-item {
+  margin-right: 50px;
+  margin-top: 10px;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.navbar-item:last-child {
+  margin-right: 0;
+}
+
+.navigate-item {
+  color: #FAF9F6;
+  font-size: 40px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navigate-item:hover,
+.search-icon-button:hover {
+  color: #FFD700;
+}
+
+.search-item {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.search-bar {
+  padding: 8px 12px;
+  font-size: 18px;
+  border: none;
+  border-radius: 20px;
+  width: 250px;
+  outline: none;
+  background-color: #FAF9F6;
+}
+
+.search-bar:hover,
+.search-bar:focus {
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
+
+.search-bar::placeholder {
+  color: grey;
+  font-style: italic;
+}
+
+.search-icon-button {
+  position: absolute;
+  top: 45%;
+  transform: translateX(-175%);
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: grey;
+  cursor: pointer;
+  padding: 0;
+}
+
+.search-icon-button:focus {
+  outline: none;
+}

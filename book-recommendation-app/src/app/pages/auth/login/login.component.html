@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+
+  <link rel="stylesheet" href="../../../../assets/css/bootstrap.css"/>
+  <link rel="stylesheet" href="../../../../assets/css/all.min.css"/>
+</head>
+
+<body>
+<img class="bookshelf-img-container" src="../../../../assets/images/bookshelf.jpg" alt="bookshelf">
+<form [formGroup]="loginFormGroup" class="auth-form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <i class="fa fa-user"></i>
+    <input type="text" placeholder="Username" id="username" formControlName="username">
+  </div>
+  <div class="form-row">
+    <i class="fa-solid fa-lock"></i>
+    <input type="{{ isVisible ? 'text' : 'password' }}" formControlName="password" placeholder="Password"/>
+    <span class="toggle-password" (click)="togglePassword()">
+      <i class="fa" [ngClass]="isVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
+    </span>
+  </div>
+  <button class="confirm-btn">Login</button>
+  <div class="error-message">{{ errorMessage }}</div>
+  <div class="navigate-message">
+    Don't have an account? <a (click)="navigateRegister()">Register</a>
+  </div>
+</form>
+</body>

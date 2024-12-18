@@ -1,12 +1,13 @@
 import {Routes} from '@angular/router';
-import {AdminLayoutComponent} from "./admin-layout/admin-layout.component";
-import {DashboardComponent} from "./dashboard/dashboard.component";
-import {BooksComponent} from "./books/books.component";
-import {BookComponent} from "./book/book.component";
-import {BookRecommendationsComponent} from "./book-recommendations/book-recommendations.component";
-import {LoginComponent} from "./login/login.component";
-import {RegisterComponent} from "./register/register.component";
-import {NotFoundComponent} from "./not-found/not-found.component";
+import {AdminLayoutComponent} from "./components/admin-layout/admin-layout.component";
+import {DashboardComponent} from "./pages/dashboard/dashboard.component";
+import {BooksComponent} from "./pages/book-pages/books/books.component";
+import {BookComponent} from "./pages/book-pages/book/book.component";
+import {BookRecommendationsComponent} from "./pages/book-pages/book-recommendations/book-recommendations.component";
+import {LoginComponent} from "./pages/auth/login/login.component";
+import {RegisterComponent} from "./pages/auth/register/register.component";
+import {NotFoundComponent} from "./pages/not-found/not-found.component";
+import {MyReviewsComponent} from "./pages/my-reviews/my-reviews.component";
 
 export const routes: Routes = [
   {
@@ -41,6 +42,10 @@ export const routes: Routes = [
       {
         path: 'book/recommendations/:isbn',
         component: BookRecommendationsComponent
+      },
+      {
+        path: 'my-reviews',
+        component: MyReviewsComponent
       }
     ]
   },

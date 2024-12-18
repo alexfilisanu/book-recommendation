@@ -11,14 +11,14 @@ with open('knn.pkl', 'rb') as model_file, open('pivot_table.pkl', 'rb') as pivot
     knn = pickle.load(model_file)
     pivot_table = pickle.load(pivot_file)
 
+
 def get_db_connection():
-    conn = psycopg2.connect(
+    return psycopg2.connect(
         host=os.getenv("POSTGRES_HOST"),
         database=os.getenv("POSTGRES_DB"),
         user=os.getenv("POSTGRES_USER"),
         password=os.getenv("POSTGRES_PASSWORD"),
     )
-    return conn
 
 
 @app.route('/total-books', methods=['GET'])
@@ -153,6 +153,7 @@ def get_book(isbn):
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @app.route('/book/recommendations/<isbn>', methods=['GET'])
 def get_book_recommendations(isbn):

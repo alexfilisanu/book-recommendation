@@ -67,7 +67,7 @@ html, body {
   right: 0;
   bottom: 0;
   width: 40%;
-  height: 90%;
+  height: 80%;
   margin: auto;
   text-align: center;
   border-radius: 30px;
@@ -78,7 +78,7 @@ html, body {
 .auth-form .form-row {
   justify-content: center;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   position: relative;
 }
 
@@ -96,26 +96,10 @@ html, body {
   width: 60%;
 }
 
-.auth-form .form-row {
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 50px;
-  position: relative;
-}
-
-.auth-form .form-row input {
-  background-color: transparent;
-  color: black;
-  border: solid 3px #412921;
-  border-radius: 10px;
-  font-size: 22px;
-  padding: 10px 35px;
-  width: 60%;
-}
-
 .auth-form .form-row input::placeholder {
   color: black;
 }
+
 .auth-form .form-row input:focus {
   outline: none;
 }
@@ -133,7 +117,19 @@ html, body {
 }
 
 .auth-form .form-row .toggle-password i {
-  transform: translateY(-50%);
+  transform: translateY(-40%);
   margin: 0;
   padding: 0;
+}
+
+.auth-form .error-message {
+  color: #D0342C;
+  width: 80%;
+  margin: 20px auto 0;
+  height: 35px;
+  font-size: 18px;
+}
+
+.auth-form .navigate-message {
+  margin-top: 20px;
 }

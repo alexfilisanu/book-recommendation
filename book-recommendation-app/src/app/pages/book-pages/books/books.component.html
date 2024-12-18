@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Books</title>
+
+  <link rel="stylesheet" href="../../../../assets/css/bootstrap.css"/>
+  <link rel="stylesheet" href="../../../../assets/css/all.min.css"/>
+</head>
+
+<body>
+<img class="bookshelf-img-container" src="../../../../assets/images/bookshelf.jpg" alt="bookshelf">
+<div class="books-container">
+  <div class="row">
+    @for (book of books; track book) {
+      <div class="col-md-3">
+        <app-book-preview [book]="book"></app-book-preview>
+      </div>
+    }
+  </div>
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="currentPage <= 1">Previous</button>
+    <button (click)="nextPage()" [disabled]="currentPage >= totalPages">Next</button>
+  </div>
+</div>
+</body>

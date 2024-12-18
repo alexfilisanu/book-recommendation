@@ -1,0 +1,19 @@
+.auth-form .confirm-btn {
+  margin-top: 20px;
+  font-size: 20px;
+  border-radius: 5px;
+  width: 40%;
+}
+
+.auth-form .confirm-btn:focus {
+  outline: none;
+}
+
+.auth-form .navigate-message a {
+  color: blue;
+}
+
+.auth-form .navigate-message a:hover {
+  cursor: pointer;
+  text-decoration: underline blue;
+}

@@ -8,7 +8,23 @@ services:
     ports:
       - "4200:4200"
     depends_on:
+      - auth
       - bookshelf
+
+  auth:
+    build:
+      context: ./auth
+      dockerfile: Dockerfile
+    container_name: auth
+    ports:
+      - "3100:3100"
+    environment:
+      POSTGRES_HOST: book-recommendation-db
+      POSTGRES_DB: book-recommendation-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    depends_on:
+      - book-recommendation-db
 
   bookshelf:
     build:

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar</title>
+
+  <link rel="stylesheet" href="../../../assets/css/all.min.css"/>
+  <link rel="stylesheet" href="../../../assets/css/bootstrap.css"/>
+</head>
+
+<div class="custom-navbar-container">
+  <div class="row">
+    <div class="navbar-title col-lg-4">
+      ShelfScape
+    </div>
+    <ul class="navbar-list col-lg-8">
+      <li class="navbar-item navigate-item" (click)="navigatePage('dashboard')">
+        Home
+      </li>
+      <li class="navbar-item navigate-item" (click)="navigatePage('books')">
+        Books
+      </li>
+      <li class="navbar-item navigate-item" (click)="navigatePage('my-reviews')">
+        My Reviews
+      </li>
+      <li class="navbar-item search-item">
+        <form [formGroup]="searchBooksFormGroup">
+          <input type="text" placeholder="Search..." class="search-bar" id="searchQuery" formControlName="searchQuery"
+                 (keyup.enter)="searchBooks()">
+          <button class="search-icon-button" (click)="searchBooks()">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </li>
+      <li class="navbar-item navigate-item" (click)="logout()">
+        <i class="fa fa-sign-out"></i>
+      </li>
+    </ul>
+  </div>
+</div>
