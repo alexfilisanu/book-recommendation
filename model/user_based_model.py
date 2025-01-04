@@ -141,9 +141,7 @@ def calculate_diversity(recommended_items_df, books_df):
     for user_id in recommended_items_df.index:
         recommended_items = recommended_items_df.loc[user_id].nlargest(10).index
         pairs = [(item1, item2) for item1 in recommended_items for item2 in recommended_items if item1 != item2]
-        print(recommended_items)
         for item1, item2 in pairs:
-            print(item1, item2)
             item1_idx = book_features.index.get_loc(item1)
             item2_idx = book_features.index.get_loc(item2)
             total_similarity += item_similarity_matrix[item1_idx, item2_idx]
