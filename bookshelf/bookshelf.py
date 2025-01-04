@@ -7,9 +7,12 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-with open('knn.pkl', 'rb') as model_file, open('pivot_table.pkl', 'rb') as pivot_file:
-    knn = pickle.load(model_file)
-    pivot_table = pickle.load(pivot_file)
+# with open('knn.pkl', 'rb') as model_file, open('pivot_table.pkl', 'rb') as pivot_file:
+#     knn = pickle.load(model_file)
+#     pivot_table = pickle.load(pivot_file)
+with open('blended_similarity.pkl', 'rb') as item_to_item_df, open('user_based_df.pkl', 'rb') as user_based_df:
+    blended_similarity_df = pickle.load(item_to_item_df)
+    predicted_ratings_df = pickle.load(user_based_df)
 
 
 def get_db_connection():
@@ -158,14 +161,105 @@ def get_book(isbn):
 @app.route('/book/recommendations/<isbn>', methods=['GET'])
 def get_book_recommendations(isbn):
     try:
-        if isbn not in pivot_table.index:
+        if isbn not in blended_similarity_df.index:
             return jsonify({'error': 'ISBN not found'}), 404
 
-        isbn_vector = pivot_table.loc[isbn].values.reshape(1, -1)
-        distances, indices = knn.kneighbors(isbn_vector, n_neighbors=5)
-        recommended_isbns = pivot_table.index[indices.flatten()].tolist()
-        if isbn in recommended_isbns:
-            recommended_isbns.remove(isbn)
+        # Get similar books from the blended similarity matrix
+        similar_books = blended_similarity_df[isbn].sort_values(ascending=False)[1:6]
+        recommended_isbns = similar_books.index.tolist()
+
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        query = f"""
+        SELECT
+            b.ISBN, 
+            b.Book_Title,
+            b.Book_Author,
+            b.Year_Of_Publication,
+            b.Publisher,
+            b.Image_URL,
+            COALESCE(AVG(r.Book_Rating), 0) AS Average_Rating
+        FROM 
+            books b
+        LEFT JOIN 
+            ratings r ON b.ISBN = r.ISBN
+        WHERE
+            b.ISBN = %s
+        GROUP BY 
+            b.ISBN;
+        """
+
+        recommendations = []
+        for rec_isbn in recommended_isbns:
+            cursor.execute(query, (rec_isbn,))
+            book = cursor.fetchone()
+            if book:
+                recommendations.append({
+                    "ISBN": book[0],
+                    "Book_Title": book[1],
+                    "Book_Author": book[2],
+                    "Year_Of_Publication": book[3],
+                    "Publisher": book[4],
+                    "Image_URL": book[5],
+                    "Average_Rating": round(book[6], 2),
+                })
+
+        conn.close()
+        return jsonify({"recommendations": recommendations}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/user/recommendations/<user_id>', methods=['GET'])
+def get_user_recommendations(user_id):
+    try:
+        if int(user_id) not in predicted_ratings_df.index:
+            # Fallback for new users: Recommend popular books
+            conn = get_db_connection()
+            cursor = conn.cursor()
+
+            query = f"""
+            SELECT
+                b.ISBN,
+                b.Book_Title,
+                b.Book_Author,
+                b.Year_Of_Publication,
+                b.Publisher,
+                b.Image_URL,
+                COALESCE(AVG(r.Book_Rating), 0) AS Average_Rating
+            FROM 
+                books b
+            LEFT JOIN 
+                ratings r ON b.ISBN = r.ISBN
+            GROUP BY 
+                b.ISBN
+            ORDER BY 
+                Average_Rating DESC
+            LIMIT 10;
+            """
+
+            cursor.execute(query)
+            books = cursor.fetchall()
+
+            recommendations = []
+            for book in books:
+                recommendations.append({
+                    "ISBN": book[0],
+                    "Book_Title": book[1],
+                    "Book_Author": book[2],
+                    "Year_Of_Publication": book[3],
+                    "Publisher": book[4],
+                    "Image_URL": book[5],
+                    "Average_Rating": round(book[6], 2),
+                })
+
+            conn.close()
+            return jsonify({"recommendations": recommendations}), 200
+
+        # User exists in predicted_ratings_df
+        user_ratings = predicted_ratings_df.loc[int(user_id)].sort_values(ascending=False)
+        recommended_isbns = user_ratings.head(10).index.tolist()
 
         conn = get_db_connection()
         cursor = conn.cursor()
