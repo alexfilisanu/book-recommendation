@@ -1,401 +1,177 @@
 User-ID,Location,Age
-3363,"knoxville, tennessee, usa",29.0
+4017,"new orleans, louisiana, usa",48.0
+6242,"calgary, alberta, canada",
 6251,"wahiawa, hawaii, usa",32.0
-6543,"strafford, missouri, usa",34.0
 6563,"burien, washington, usa",31.0
 6575,"seattle, washington, usa",
-7158,"omaha, nebraska, usa",30.0
 7346,"sunnyvale, california, usa",49.0
-7915,"st. paul, minnesota, usa",
 8245,"torrance, california, usa",31.0
 8253,"tulsa, oklahoma, usa",26.0
+8454,"auburndale, massachusetts, usa",
+10314,"beaverton, oregon, usa",
 10447,"chicago, illinois, usa",
-11601,"brooklyn, new york, usa",
 11676,"n/a, n/a, n/a",
-12538,"byron, minnesota, usa",18.0
-13273,"harrisburg, pennsylvania, usa",201.0
 13552,"cordova, tennessee, usa",32.0
-14422,"apple valley, minnesota, usa",
-14521,"providence, rhode island, usa",
-15408,"cary, north carolina, usa",34.0
-16634,"little rock, arkansas, usa",42.0
 16795,"mechanicsville, maryland, usa",47.0
 17950,"puchong, selangor, malaysia",32.0
+20180,"sacramento, california, usa",36.0
 21014,"fresno, california, usa",
 22625,"lynbrook, new york, usa",54.0
-23768,"st. louis, missouri, usa",45.0
-24921,"higley, arizona, usa",29.0
-25981,"nj, new jersey, usa",
-26544,"woodbridge, virginia, usa",37.0
-28204,"south ohio, nova scotia, canada",61.0
-29259,"mt. airy, , usa",39.0
-30487,"newbury park, california, usa",40.0
-30533,"charleston, south carolina, usa",
+23872,"tulsa, oklahoma, usa",22.0
+23902,"london, england, united kingdom",
+27472,"bountiful, utah, usa",41.0
+28177,"grand rapids, michigan, usa",26.0
+28634,"bad axe, michigan, usa",28.0
+30735,"corvallis, oregon, usa",
 30972,"columbiana, alabama, usa",47.0
 31315,"henryville, indiana, usa",34.0
-31556,"chula vista, california, usa",51.0
+31393,"portland, oregon, usa",
 31826,"jasper, missouri, usa",54.0
-32195,"fall river, massachusetts, usa",
-32440,"dunedin, otago, new zealand",
-32773,"olathe, kansas, usa",28.0
-33974,"barnhart, missouri, usa",24.0
-35050,"west columbia, south carolina, usa",33.0
-35857,"mentor, ohio, usa",36.0
 35859,"duluth, minnesota, usa",
 36606,"san marcos, california, usa",39.0
-36609,"zachary, louisiana, usa",32.0
-36836,"raleigh, north carolina, usa",56.0
+36907,"dunnville, ontario, canada",39.0
 37712,"cincinnati, ohio, usa",23.0
 37950,"calgary, alberta, canada",
-38023,"hayward, california, usa",30.0
-39281,"morris plains, new jersey, usa",45.0
-39616,"las vegas, nevada, usa",38.0
-39646,"fairless hills, pennsylvania, usa",35.0
 40889,"brainerd, minnesota, usa",37.0
-40943,"oklahoma city, oklahoma, usa",40.0
-41084,"orlando, florida, usa",36.0
-41841,"sherwood park, alberta, canada",
 43246,"toronto, ontario, canada",36.0
-43619,"shrewsbury, massachusetts, usa",26.0
 43842,"tucson, ,",
-44728,"florence, alabama, usa",31.0
 46398,"san antonio, texas, usa",37.0
-48046,"central sq., new york, usa",
-48494,"lemon grove, california, usa",51.0
-49109,"west jordan, utah, usa",38.0
-50225,"fresno, california, usa",
-51350,"monroe, ,",
-51450,"lawrenceville, georgia, usa",54.0
-51883,"jasper, missouri, usa",31.0
-52002,"bloomington, indiana, usa",
 52584,"livermore, california, usa",45.0
-52853,"yuba city, california, usa",61.0
 53174,"orlando, florida, usa",29.0
+53220,"fullerton, california, usa",36.0
 55492,"antioch, illinois, usa",43.0
-55548,"chamblee, georgia, usa",
-55734,"calgary, alberta, canada",37.0
-56447,"sturgis, michigan, usa",22.0
-56856,"escondido, california, usa",23.0
-56959,"monroe twp., new jersey, usa",52.0
-59172,"owen sound, ontario, canada",36.0
-59390,"uniontown, pennsylvania, usa",
 60244,"alvin, texas, usa",47.0
-61619,"coburg, oregon, usa",
 62862,"new milford, connecticut, usa",47.0
-62891,"hi nella, new jersey, usa",27.0
-63394,"eufaula, alabama, usa",22.0
-63938,"northwest, iowa, usa",
-64436,"san ramon, california, usa",36.0
 66942,"kuching, sarawak, malaysia",31.0
 68555,"bad axe, michigan, usa",
-69042,"drayton valley, alberta, canada",55.0
 69078,"new york, new york, usa",42.0
-69232,"mooresville, north carolina, usa",55.0
-69355,"syracuse, new york, usa",
-69697,"west sacramento, california, usa",24.0
-70052,"st. john`s, ontario, canada",30.0
-73394,"san diego, california, usa",33.0
-76352,"olympia, washington, usa",58.0
-76626,"london, england, united kingdom",38.0
-76942,"sacramento, california, usa",25.0
-77809,"atlantic highlands, new jersey, usa",29.0
+69389,"nebraska city, nebraska, usa",29.0
+70666,"warwick, rhode island, usa",18.0
+73044,"sudbury, ontario, canada",
+73681,"almada, setúbal, portugal",27.0
+75591,"charleston, west virginia, usa",33.0
+75819,"west falls, new york, usa",
 78783,"chantilly, virginia, usa",49.0
-78834,"honolulu, hawaii, usa",28.0
 78973,"amadora, lisboa, portugal",29.0
-79186,"fairbanks, alaska, usa",37.0
-80538,"lisboa, lisboa, portugal",32.0
-81492,"san antonio, texas, usa",28.0
-81682,"bluffton, south carolina,",36.0
-81848,"springfield, illinois, usa",35.0
-84024,"abilene, texas, usa",37.0
-85426,"chisholm, minnesota, usa",23.0
-85701,"savannah, georgia, usa",37.0
-85757,"pawtucket, rhode island, usa",40.0
-86202,"sydney, new south wales, australia",26.0
+85526,"victoria, british columbia, canada",36.0
 87141,"huntington beach, california, usa",
-87555,"lexington, kentucky, usa",31.0
-87746,"wallingford, connecticut, usa",52.0
 88693,"shanghai, shanghai, china",30.0
 88733,"houston, texas, usa",
-88937,"cary, north carolina, usa",39.0
 89602,"honolulu, hawaii, usa",
-91832,"miami, florida, usa",
-93363,"farmington hills, michigan, usa",30.0
+91113,"chicago, illinois, usa",26.0
 95359,"charleston, west virginia, usa",33.0
 95932,"manchester, new hampshire, usa",36.0
-96054,"ottawa, ontario, canada",29.0
-98741,"fairbanks, alaska, usa",30.0
+98391,"morrow, georgia, usa",52.0
 98787,"melbourne, victoria, australia",26.0
 100459,"bay area, california, usa",38.0
-100846,"plainfield, illinois, usa",39.0
 100906,"seattle, washington, usa",34.0
 101876,"nicholasville, kentucky, usa",38.0
 102647,"modesto, california, usa",14.0
-102967,"olympia, washington, usa",54.0
 104636,"youngstown, ohio, usa",
 104665,"altoona, iowa, usa",30.0
+105028,"kuala lumpur, federal territory, malaysia",22.0
 105517,"calgary, alberta, canada",28.0
 105979,"oakland, california, usa",26.0
-106225,"chicago, illinois, usa",38.0
 107784,"tarentum, pennsylvania, usa",
-108005,"greenfield, wisconsin, usa",29.0
 110912,"milpitas, california, usa",36.0
 110934,"kirkland, washington, usa",46.0
 110973,"wiley ford, west virginia, usa",43.0
-111174,"austin, texas, usa",
 112001,"barren springs, virginia, usa",43.0
-112026,"lakewood, washington, usa",17.0
-112881,"kitchener, ontario, canada",18.0
 113270,"evanston, illinois, usa",25.0
 113519,"pleasanton, california, usa",
 114368,"mechanicsville, maryland, usa",33.0
-114414,"edinburg, texas, usa",27.0
-114444,"alexandria, virginia, usa",34.0
 114544,"antelope, california, usa",35.0
-114868,"edmonton, alberta, canada",31.0
 114988,"temple, texas, usa",37.0
 115003,"asheville, north carolina, usa",43.0
-115120,"sherman oaks, california, usa",29.0
-115490,"dekalb, illinois, usa",
-119575,"north vancouver, british columbia, canada",30.0
-122793,"omemee, ontario, canada",46.0
-123790,"mount vernon, new york, usa",25.0
-123981,"phoenix, arizona, usa",46.0
-124487,"ramah, new mexico, usa",
-124942,"olympia, washington, usa",
-125039,"lafayette, indiana, usa",27.0
+121170,"arlington, virginia, usa",30.0
+124874,"warren, new jersey, usa",32.0
 125519,"irvine, california, usa",40.0
-125692,"elmira, new york, usa",28.0
-125774,"tehran, tehran, iran",36.0
 126492,"westmont, illinois, usa",31.0
-126736,"fulton, missouri, usa",38.0
-127200,"urbana, illinois, usa",
-127233,"marietta, georgia, usa",29.0
-127359,"beaverton, oregon, usa",33.0
-127429,"kansas city, missouri, usa",23.0
-127914,"anchorage, alaska, usa",43.0
-128208,"san antonio, texas, usa",34.0
-128696,"southampton, england, united kingdom",34.0
-128835,"bellingham, washington, usa",60.0
-129716,"tallahassee, florida, usa",30.0
-130474,"nashville, tennessee, usa",33.0
 130571,"summerville, south carolina, usa",
-131046,"ellington, connecticut, usa",26.0
-133747,"gaithersburg, maryland, usa",28.0
-135045,"spring, texas, usa",29.0
 135149,"ft. pierce, florida, usa",
-135831,"potomac falls, virginia, usa",
-136205,"crest hill, illinois, usa",39.0
-136382,"edmonton, alberta, canada",
+136491,"rio rancho, new mexico, usa",18.0
 137589,"enterprise, oregon, usa",35.0
+138543,"mesquite, texas, usa",21.0
 138844,"winnipeg, manitoba, canada",40.0
+139913,"monett, missouri, usa",54.0
 140000,"london, england, united kingdom",
 140358,"san diego, california, usa",
 141444,"west springfield, massachusetts,",
 141493,"dove canyon, california, usa",44.0
-141710,"omaha, nebraska, usa",
-142524,"detroit, michigan, usa",36.0
-143175,"blythewood, south carolina, usa",28.0
-143253,"dyersburg, tennessee, usa",27.0
-143415,"bellingham, washington, usa",50.0
-143792,"nottingham, england, united kingdom",25.0
 144531,"pleasanton, california, usa",37.0
-145451,"winter haven, florida, usa",63.0
-145619,"middletown, connecticut, usa",36.0
-146113,"cary, north carolina, usa",
-146348,"tigard, oregon, usa",
-147141,"portland, oregon, usa",21.0
 147847,"greenville, illinois, usa",
 148744,"campbellsport, wisconsin, usa",67.0
-149934,"chicago, illinois, usa",44.0
-150968,"manchester, new hampshire, usa",47.0
 150979,"greencastle, pennsylvania, usa",34.0
 153662,"ft. stewart, georgia, usa",44.0
-155014,"las cruces, new mexico, usa",
-155147,"seattle, washington, usa",60.0
 156150,"howell, new jersey, usa",36.0
-157273,"dripping springs, texas, usa",37.0
-158254,"asheville, north carolina, usa",28.0
 158295,"cleveland, ohio, usa",
-159033,"taneytown, maryland, usa",46.0
+159506,"portland, oregon, usa",28.0
 160819,"miami, florida, usa",43.0
 162639,"kelso, washington, usa",
-162738,"waterford, michigan, usa",35.0
-163804,"bonaire, georgia, usa",43.0
-163973,"são paulo, são paulo, brazil",46.0
-164027,"burlington, ontario, canada",
 164323,"delta, british columbia, canada",31.0
 165308,"new berlin, wisconsin, usa",33.0
-165319,"tucson, arizona, usa",28.0
-166123,"cortez, colorado, usa",32.0
-166596,"greenwood, british columbia, canada",57.0
-167349,"keller, texas, usa",33.0
-167471,"milton, ontario, canada",29.0
-167800,"olive branch, mississippi, usa",57.0
-168064,"fredericton, new brunswick, canada",
-169233,"chicago, illinois, usa",27.0
-169699,"vadnais heights, minnesota, usa",40.0
 170513,"butler, pennsylvania, usa",
-170518,"gaithersburg, maryland, usa",61.0
-171118,"toronto, ontario, canada",47.0
-172030,"rainsville, alabama, usa",30.0
-172512,"louisville, kentucky, usa",25.0
-172742,"astoria, oregon, usa",44.0
 173415,"chicago, illinois, usa",31.0
-174304,"st. louis, missouri, usa",26.0
-175003,"round rock, texas, usa",33.0
+173679,"regensburg, bavaria, germany",27.0
 177072,"moberly, missouri, usa",47.0
-177090,"ashland, missouri, usa",37.0
-177458,"ottawa, ontario, canada",29.0
+177432,"wichita, kansas, usa",33.0
 178667,"freehold, new jersey, usa",34.0
-180651,"coventry, england, united kingdom",54.0
-181176,"st. louis, missouri, usa",43.0
 181687,"austin, texas, usa",29.0
-182085,"ginsheim, hessen, germany",
-184299,"omaha, nebraska, usa",31.0
-185233,"winnemucca, nevada, usa",31.0
-186570,"rantoul, illinois, usa",28.0
-187145,"grapeview, washington, usa",65.0
 187256,"citrus heights, california, usa",
-187517,"brooklyn, new york, usa",28.0
-188010,"edmonton, alberta, canada",
-189334,"ottawa, ontario, canada",49.0
-190459,"schertz, texas, usa",40.0
-190708,"ramona, california, usa",43.0
+189835,"honolulu, hawaii, usa",
 190925,"hobe sound, florida, usa",51.0
-193499,"deland, florida, usa",41.0
-193676,"waterford, new york, usa",27.0
 194600,"toronto, ontario, canada",51.0
-194669,"savannah, georgia, usa",46.0
-195694,"tucson, arizona, usa",29.0
-196047,"macomb, michigan, usa",55.0
 196077,"disputanta, virginia, usa",28.0
-196466,"king of prussia, pennsylvania, usa",30.0
-197364,"cumming, georgia, usa",30.0
-197775,"iasi, iasi, romania",21.0
-198711,"little canada, minnesota, usa",62.0
 200226,"burlington, ontario, canada",39.0
-200674,"pittsburg, missouri, usa",58.0
-201290,"seixal, setúbal, portugal",35.0
-201526,"vancouver, british columbia, canada",25.0
-201674,"sellersville, pennsylvania, usa",28.0
-202277,"kennesaw, georgia, usa",54.0
 203240,"st. louis, missouri, usa",32.0
-203968,"cumberland, maryland, usa",
 204864,"simi valley, california, usa",47.0
-205735,"mosinee, wisconsin, usa",26.0
-206534,"evanston, illinois, usa",
-207721,"mississauga, ontario, canada",39.0
-208147,"federal way, washington, usa",41.0
-208406,"kansas city, missouri, usa",30.0
+206305,"lancaster, ohio, usa",
 208671,"simi valley, california, usa",
 208829,"fredericton, new brunswick, canada",
-209373,"mountain view, california, usa",37.0
-209756,"sacramento, california, usa",36.0
 210485,"carmichael, california, usa",35.0
 211426,"pueblo, colorado, usa",24.0
-212898,"la ronge, saskatchewan, canada",
-212923,"minneapolis, minnesota, usa",34.0
 214786,"boone county, kentucky, usa",
-217375,"st. petersburg, florida, usa",35.0
+216683,"san jose, california, usa",
 218552,"san antonio, texas, usa",48.0
 218568,"byron, minnesota, usa",41.0
-219546,"new albany, indiana, usa",25.0
-220278,"hammond, indiana, usa",32.0
+219683,"santa ana, california, usa",32.0
+220688,"brookline, massachusetts, usa",27.0
 221445,"portland, oregon, usa",
-222296,"chapel hill, north carolina, usa",
 223154,"wilmington, north carolina, usa",33.0
-224138,"carlsbad, california, usa",
-224249,"moline, illinois, usa",
 224349,"columbia, maryland, usa",23.0
 224430,"louisville, kentucky, usa",
-224764,"rockaway, new jersey, usa",116.0
 225087,"toronto, ontario, canada",51.0
 225763,"san francisco, california, usa",
-225810,"el cajon, california, usa",56.0
-225989,"palmdale, california, usa",27.0
-226545,"mesa, arizona, usa",38.0
-227447,"kelseyville, california, usa",38.0
-227520,"san jose, california, usa",33.0
+226965,"clemson, south carolina, usa",47.0
 227705,"westport, connecticut, usa",36.0
-228681,"dumont, new jersey, usa",
-228764,"oakdale, california, usa",39.0
-228998,"lincoln, nebraska, usa",41.0
 229313,"southgate, michigan, usa",31.0
 229741,"kensington, california, usa",29.0
-230496,"simi valley, california, usa",34.0
-230522,"colorado springs, colorado, usa",52.0
 231210,"roanoke, virginia, usa",44.0
-231237,"waianae, hawaii, us",
 232131,"oakland, california, usa",
 232945,"newport, rhode island, usa",28.0
-234623,"scarborough, maine, usa",
 234828,"fairbanks, alaska, usa",
 235105,"st louis, missouri, usa",46.0
-235392,"st. louis, missouri, usa",27.0
-235842,"griswold, iowa, usa",41.0
-235935,"bridgeton, new jersey, usa",43.0
-236172,"chesapeake, virginia, usa",34.0
-236283,"orlando, florida, usa",41.0
+235282,"encino, california, usa",43.0
 236340,"st kilda, victoria, australia",29.0
 236757,"mars, pennsylvania, usa",
-238120,"louisville, kentucky, usa",25.0
-238526,"charleston, south carolina, usa",
-238781,"yucca valley, california, usa",51.0
-240035,"birmingham, alabama, usa",
+239594,"leuven, vlaams-brabant, belgium",28.0
 240567,"hawthorne, new jersey, usa",33.0
 241980,"ashburn, virginia, usa",35.0
 242083,"fairview, new mexico, usa",24.0
-242106,"covington, virginia, usa",28.0
-242299,"orlando, florida, usa",25.0
-244736,"forest grove, oregon, usa",23.0
-245827,"albuquerque, ,",
-245963,"saint louis, missouri, usa",
-246655,"mooresville, north carolina, usa",
+244420,"kenmore, ,",
+245410,"san antonio, texas, usa",28.0
 247447,"long beach, california, usa",19.0
-247752,"wake forest, north carolina, usa",30.0
-249628,"whitney, texas, usa",51.0
-250184,"renton, washington, usa",
-251422,"cumberland, maryland, usa",23.0
-251613,"sonoma, california, usa",34.0
-251843,"homer city, pennsylvania, usa",
-252071,"catawba, wisconsin, usa",32.0
-252695,"lincoln, nebraska, usa",
+251844,"lisboa, lisboa, portugal",30.0
 254465,"maryville, tennessee, usa",22.0
-254971,"boise, idaho, usa",53.0
 255489,"sherman oaks, california, usa",
-256167,"temecula, california, usa",14.0
-256407,"florissant, missouri, usa",58.0
+256843,"isle of palms, south carolina, usa",40.0
 258534,"mcqueeney, texas, usa",32.0
-258938,"los angeles, california, usa",27.0
-259629,"carrollton, texas, usa",51.0
 260897,"chicago, illinois, usa",25.0
 261829,"fpo, ap, usa",32.0
-262399,"glen allen, virginia, usa",48.0
-263163,"austin, texas, usa",26.0
-263877,"victoria, british columbia, canada",44.0
-264031,"traverse city, michigan, usa",34.0
-264317,"portela de sacavém, loures, portugal",25.0
 264543,"quincy, massachusetts, usa",
 265115,"vista, california, usa",
-265313,"morrisville, north carolina, usa",33.0
 266056,"hoover, alabama, usa",47.0
-266226,"new york, new york, usa",
-266865,"reston, virginia, usa",33.0
-268032,"sunnyvale, california, usa",34.0
-268330,"miami, florida, usa",23.0
-268622,"upper township, new jersey, usa",36.0
-269566,"seattle, washington, usa",9.0
-269719,"jacksonville, north carolina, usa",33.0
+270605,"bourbonnais, illinois, usa",
 270713,"toronto, ontario, canada",27.0
-271284,"alexandria, virginia, usa",50.0
 271448,"ona, west virginia, usa",27.0
-271705,"atlanta, georgia, usa",25.0
-273086,"chicago, illinois, usa",33.0
-273979,"bloomsburg, pennsylvania, usa",20.0
-274004,"sydenham, london, england, united kingdom",41.0
-274061,"gahanna/columbus, ohio, usa",26.0
-274308,"delray beach, florida, usa",33.0
-275970,"pittsburgh, pennsylvania, usa",46.0
-277427,"gilbert, arizona, usa",48.0
-278418,"omaha, nebraska, usa",
+274301,"frankston, victoria, australia",41.0
