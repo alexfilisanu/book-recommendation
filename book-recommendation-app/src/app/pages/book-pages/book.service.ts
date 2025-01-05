@@ -36,6 +36,22 @@ export class BookService {
     return this.http.get<any>(`${this.baseUrl}/book/recommendations/${isbn}`);
   }
 
+  public getMyTotalReviews(userId: string): Observable<any> {
+    const params = new HttpParams()
+      .set('userId', userId);
+
+    return this.http.get<any>(`${this.baseUrl}/total-reviews`, {params});
+  }
+
+  public getMyReviews(userId: string, page: number = 1, limit: number = 10): Observable<any> {
+    const params = new HttpParams()
+      .set('userId', userId)
+      .set('page', page.toString())
+      .set('limit', limit.toString());
+
+    return this.http.get<any>(`${this.baseUrl}/reviews`, {params});
+  }
+
   public checkReviewStatus(isbn: string, userId: string): Observable<any> {
     const params = new HttpParams()
       .set('isbn', isbn)

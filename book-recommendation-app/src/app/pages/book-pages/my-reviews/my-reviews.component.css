@@ -1,0 +1,20 @@
+.books-container h1,
+.books-container h3 {
+  font-weight: bold;
+  color: #FAF9F6;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.books-container h1 {
+  font-size: 55px;
+  margin-top: 50px;
+}
+
+.books-container h2 {
+  color: #FAF9F6;
+}
+
+.books-container h3 {
+  font-size: 40px;
+}

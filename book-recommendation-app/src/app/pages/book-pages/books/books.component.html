@@ -11,16 +11,8 @@
 <body>
 <img class="bookshelf-img-container" src="../../../../assets/images/bookshelf.jpg" alt="bookshelf">
 <div class="books-container">
-  <div class="row">
-    @for (book of books; track book) {
-      <div class="col-md-3">
-        <app-book-preview [book]="book"></app-book-preview>
-      </div>
-    }
-  </div>
-  <div class="pagination">
-    <button (click)="previousPage()" [disabled]="currentPage <= 1">Previous</button>
-    <button (click)="nextPage()" [disabled]="currentPage >= totalPages">Next</button>
-  </div>
+  <app-books-pagination
+    [books]="books" [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="onPageChange($event)">
+  </app-books-pagination>
 </div>
 </body>

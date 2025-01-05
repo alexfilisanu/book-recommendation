@@ -7,7 +7,7 @@ import {BookRecommendationsComponent} from "./pages/book-pages/book-recommendati
 import {LoginComponent} from "./pages/auth/login/login.component";
 import {RegisterComponent} from "./pages/auth/register/register.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
-import {MyReviewsComponent} from "./pages/my-reviews/my-reviews.component";
+import {MyReviewsComponent} from "./pages/book-pages/my-reviews/my-reviews.component";
 
 export const routes: Routes = [
   {

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My reviews</title>
+
+  <link rel="stylesheet" href="../../../../assets/css/bootstrap.css"/>
+  <link rel="stylesheet" href="../../../../assets/css/all.min.css"/>
+</head>
+
+<body>
+<img class="bookshelf-img-container" src="../../../../assets/images/bookshelf.jpg" alt="bookshelf">
+<div class="books-container">
+  <h1>Hello, {{ userName }}!</h1>
+  <h3 *ngIf="totalReviews < 20">
+    You currently have {{ totalReviews }} reviews. Review at least 20 books to unlock personalized book recommendations!
+  </h3>
+  <h3 *ngIf="totalReviews >= 20">
+    Congratulations! You are eligible for personalized book recommendations.
+    <!-- Get Personalized Recommendations -->
+  </h3>
+  <h2>Yours reviews:</h2>
+  <app-books-pagination
+    [books]="reviews" [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="onPageChange($event)">
+  </app-books-pagination>
+</div>
+</body>

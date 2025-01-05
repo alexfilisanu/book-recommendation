@@ -12,12 +12,8 @@
 <img class="bookshelf-img-container" src="../../../../assets/images/bookshelf.jpg" alt="bookshelf">
 <div class="books-container">
   <h1>Thank you for your review! <br> More books like "{{ bookTitle }}":</h1>
-  <div class="row">
-    @for (book of recommendations; track book) {
-      <div class="col-md-3">
-        <app-book-preview [book]="book"></app-book-preview>
-      </div>
-    }
-  </div>
+  <app-books-pagination
+    [books]="displayedRecommendations" [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="onPageChange($event)">
+  </app-books-pagination>
 </div>
 </body>

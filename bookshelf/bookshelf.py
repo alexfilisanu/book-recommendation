@@ -405,6 +405,87 @@ def get_user_recommendations(user_id):
         return jsonify({"error": str(e)}), 500
 
 
+@app.route('/total-reviews', methods=['GET'])
+def get_my_total_reviews():
+    user_id = int(request.args.get('userId'))
+
+    if not user_id:
+        return jsonify({'error': 'Missing required data'}), 400
+
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        query = f"""
+        SELECT
+            COUNT(*)
+        FROM
+            ratings
+        WHERE
+            User_ID = %s;
+        """
+        cursor.execute(query, (user_id,))
+        total_reviews = cursor.fetchone()[0]
+
+        conn.close()
+        return jsonify({'totalReviews': total_reviews}), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/reviews', methods=['GET'])
+def get_my_reviews():
+    user_id = int(request.args.get('userId'))
+    page = int(request.args.get('page', 1))
+    limit = int(request.args.get('limit', 10))
+    offset = (page - 1) * limit
+
+    if not user_id:
+        return jsonify({'error': 'Missing required data'}), 400
+
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        query = f"""
+        SELECT
+            b.ISBN,
+            b.Book_Title,
+            b.Book_Author,
+            b.Image_URL,
+            r.Book_Rating
+        FROM
+            ratings r
+        JOIN
+            books b ON r.ISBN = b.ISBN
+        WHERE
+            r.User_ID = %s
+        ORDER BY
+            r.Book_Rating DESC
+        LIMIT %s OFFSET %s;
+        """
+        cursor.execute(query, (user_id, limit, offset))
+        reviews = cursor.fetchall()
+
+        reviews_list = [
+            {
+                "ISBN": row[0],
+                "Book_Title": row[1],
+                "Book_Author": row[2],
+                "Image_URL": row[3],
+                "Average_Rating": row[4],
+            }
+            for row in reviews
+        ]
+
+        conn.close()
+        return jsonify({'reviews': reviews_list}), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/book/review/status', methods=['GET'])
 def get_review_status():
     user_id = int(request.args.get('userId'))
