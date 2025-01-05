@@ -89,3 +89,8 @@
 .review-container .confirm-btn:focus {
   outline: none;
 }
+
+.review-container h2,
+.review-container app-star-rating {
+  margin: auto auto 10px;
+}

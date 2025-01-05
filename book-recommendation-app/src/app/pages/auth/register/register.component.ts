@@ -57,6 +57,7 @@ export class RegisterComponent {
         next: (response) => {
           sessionStorage.setItem('isAuthenticated', 'true');
           sessionStorage.setItem('username', response.username);
+          sessionStorage.setItem('userId', response.userId);
           this.router.navigate(['/dashboard']).catch(error => {
             console.error('Error navigating to dashboard:', error);
           });

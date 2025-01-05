@@ -66,13 +66,15 @@ def register():
         INSERT INTO 
             users (username, password, location, age)
         VALUES 
-            (%s, %s, %s, %s);
+            (%s, %s, %s, %s)
+        RETURNING user_id;
         """
         cursor.execute(query, (username, hashed_password, location, age))
+        user_id = cursor.fetchone()[0]
         conn.commit()
 
         conn.close()
-        return jsonify({'username': username}), 200
+        return jsonify({'username': username, 'userId': user_id}), 200
 
     except Exception as e:
         return jsonify({str(e)}), 500
@@ -97,18 +99,19 @@ def login():
 
         query = f"""
             SELECT
-                username
+                user_id, username
             FROM
                 users
             WHERE
                 username = %s AND password = %s;
         """
         cursor.execute(query, (username, hashed_password))
-        username = cursor.fetchone()
+        result = cursor.fetchone()
 
         conn.close()
-        if username:
-            return jsonify({'username': username}), 200
+        if result:
+            user_id, username = result
+            return jsonify({'userId': user_id, 'username': username}), 200
         else:
             return jsonify({'Invalid credentials'}), 401
 

@@ -22,11 +22,15 @@
       <p>Publisher: {{ book.Publisher }}</p>
       <p>Year of publication: {{ book.Year_Of_Publication }}</p>
       <p>ISBN: {{ book.ISBN }}</p>
-      <div class="review-container">
-        @for (_ of [].constructor(11); track $index) {
-          <button class="rating-btn" (click)="selectedReview = $index">{{ $index }}</button>
+      <div class="review-container" *ngIf="!bookRating">
+        @for (_ of [].constructor(10); track $index) {
+          <button class="rating-btn" (click)="selectedReview = $index + 1">{{ $index + 1 }}</button>
         }
         <button class="confirm-btn" (click)="sendReview()" [disabled]="selectedReview === null">Send Review</button>
+      </div>
+      <div class="review-container" *ngIf="bookRating">
+        <h2>Your have already rated this book</h2>
+        <app-star-rating [rating]="getRating(bookRating.toString())"></app-star-rating>
       </div>
     </div>
   </div>

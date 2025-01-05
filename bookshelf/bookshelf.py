@@ -211,6 +211,7 @@ def get_book_recommendations(isbn):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
 @app.route('/user/recommendations/<user_id>', methods=['GET'])
 def get_user_recommendations(user_id):
     try:
@@ -303,6 +304,67 @@ def get_user_recommendations(user_id):
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
+@app.route('/book/review/status', methods=['GET'])
+def get_review_status():
+    user_id = int(request.args.get('userId'))
+    isbn = request.args.get('isbn')
+
+    if not user_id or not isbn:
+        return jsonify({'error': 'Missing required data'}), 400
+
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        query = f"""
+        SELECT
+            Book_Rating
+        FROM
+            ratings
+        WHERE
+            User_ID = %s
+            AND ISBN = %s;
+        """
+        cursor.execute(query, (user_id, isbn))
+        book_rating = cursor.fetchone()
+
+        conn.close()
+        return jsonify({'bookRating': book_rating}), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/book/review', methods=['POST'])
+def add_book_review():
+    data = request.json
+    if not data:
+        return jsonify({'No data provided'}), 400
+
+    user_id = int(data.get('userId'))
+    isbn = data.get('isbn')
+    rating = int(data.get('rating'))
+
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        query = f"""
+        INSERT INTO 
+            ratings (User_ID, ISBN, Book_Rating)
+        VALUES 
+            (%s, %s, %s);
+        """
+        cursor.execute(query, (user_id, isbn, rating))
+        conn.commit()
+
+        conn.close()
+        return jsonify({"message": "Review added successfully"}), 200
+
+    except Exception as e:
+        return jsonify({str(e)}), 500
 
 
 if __name__ == '__main__':

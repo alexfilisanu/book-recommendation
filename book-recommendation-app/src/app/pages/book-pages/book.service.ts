@@ -35,4 +35,16 @@ export class BookService {
   public getBookRecommendation(isbn: string): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/book/recommendations/${isbn}`);
   }
+
+  public checkReviewStatus(isbn: string, userId: string): Observable<any> {
+    const params = new HttpParams()
+      .set('isbn', isbn)
+      .set('userId', userId);
+
+    return this.http.get<any>(`${this.baseUrl}/book/review/status`, {params});
+  }
+
+  public submitReview(reviewData: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/book/review`, reviewData);
+  }
 }
