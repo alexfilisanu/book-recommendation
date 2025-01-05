@@ -3,9 +3,26 @@ import pickle
 import psycopg2
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import datetime
+import threading
+import pandas as pd
+from scipy.sparse.linalg import svds
+import numpy as np
+import logging
 
 app = Flask(__name__)
 CORS(app)
+
+def configure_logging():
+    handler = logging.StreamHandler()
+    handler.setLevel(logging.INFO)
+    formatter = logging.Formatter(
+        '[%(asctime)s] %(levelname)s in %(module)s: %(message)s'
+    )
+    handler.setFormatter(formatter)
+    app.logger.addHandler(handler)
+
+configure_logging()
 
 # with open('knn.pkl', 'rb') as model_file, open('pivot_table.pkl', 'rb') as pivot_file:
 #     knn = pickle.load(model_file)
@@ -14,6 +31,89 @@ with open('blended_similarity.pkl', 'rb') as item_to_item_df, open('user_based_d
     blended_similarity_df = pickle.load(item_to_item_df)
     predicted_ratings_df = pickle.load(user_based_df)
 
+schedule_lock = threading.Lock()
+app.is_scheduled = False
+
+def get_filtered_data():
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            SELECT User_ID
+            FROM ratings
+            GROUP BY User_ID
+            HAVING COUNT(*) >= 20;
+        """)
+        filtered_users = [row[0] for row in cursor.fetchall()]
+
+        query = """
+            SELECT r.User_ID, r.ISBN, r.Book_Rating, b.Book_Title, b.Book_Author, b.Year_Of_Publication, b.Publisher
+            FROM ratings r
+            JOIN books b ON r.ISBN = b.ISBN
+            WHERE r.User_ID = ANY(%s);
+        """
+        cursor.execute(query, (filtered_users,))
+        ratings_data = cursor.fetchall()
+
+        conn.close()
+
+        return filtered_users, ratings_data
+
+    except Exception as e:
+        return [], []
+
+def recalculate_predictions():
+    app.logger.info(f"Recalculating predicted_ratings_df at {datetime.datetime.now()}")
+    global predicted_ratings_df
+    filtered_users, ratings_data = get_filtered_data()
+    if not ratings_data:
+        return
+
+    columns = ['User-ID', 'ISBN', 'Book-Rating', 'Book-Title', 'Book-Author', 'Year-Of-Publication', 'Publisher']
+    merged_df = pd.DataFrame(ratings_data, columns=columns)
+
+    user_item_matrix = merged_df.pivot_table(index='User-ID', columns='ISBN', values='Book-Rating').fillna(0)
+    user_item_matrix_values = user_item_matrix.values
+    U, sigma, Vt = svds(user_item_matrix_values, k=50)
+    sigma = np.diag(sigma)
+    predicted_ratings = np.dot(np.dot(U, sigma), Vt)
+
+    predicted_ratings_df = pd.DataFrame(predicted_ratings, index=user_item_matrix.index, columns=user_item_matrix.columns)
+
+    app.logger.info("Recalculation complete. Updated predictions saved.")
+
+def schedule_daily_recalculation():
+    with schedule_lock:
+        if app.is_scheduled:
+            app.logger.info("Recalculation already scheduled. Skipping duplicate schedule.")
+            return
+        app.is_scheduled = True
+
+    now = datetime.datetime.now()
+    next_run = now + datetime.timedelta(minutes=1)
+    delay = (next_run - now).total_seconds()
+
+    threading.Timer(delay, perform_daily_recalculation).start()
+
+def perform_daily_recalculation():
+    recalculate_predictions()
+    with schedule_lock:
+        app.is_scheduled = False
+    schedule_daily_recalculation()
+
+@app.before_first_request
+def initialize_scheduler():
+    schedule_daily_recalculation()
+
+@app.route('/status', methods=['GET'])
+def get_status():
+    return jsonify({"status": "Running", "scheduled": app.is_scheduled})
+
+@app.route('/trigger', methods=['POST'])
+def manual_trigger():
+    recalculate_predictions()
+    return jsonify({"status": "Recalculation triggered manually."})
 
 def get_db_connection():
     return psycopg2.connect(
@@ -22,7 +122,6 @@ def get_db_connection():
         user=os.getenv("POSTGRES_USER"),
         password=os.getenv("POSTGRES_PASSWORD"),
     )
-
 
 @app.route('/total-books', methods=['GET'])
 def get_total_books():
@@ -365,7 +464,6 @@ def add_book_review():
 
     except Exception as e:
         return jsonify({str(e)}), 500
-
 
 if __name__ == '__main__':
     app.run(debug=True, port=3050, host='0.0.0.0')
