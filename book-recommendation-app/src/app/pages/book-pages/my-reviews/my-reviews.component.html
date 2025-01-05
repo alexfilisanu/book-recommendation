@@ -2,7 +2,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Recommendations</title>
+  <title>My reviews</title>
 
   <link rel="stylesheet" href="../../../../assets/css/bootstrap.css"/>
   <link rel="stylesheet" href="../../../../assets/css/all.min.css"/>
@@ -11,9 +11,17 @@
 <body>
 <img class="bookshelf-img-container" src="../../../../assets/images/bookshelf.jpg" alt="bookshelf">
 <div class="books-container">
-  <h1>Thank you for your review! <br> More books like "{{ bookTitle }}":</h1>
+  <h1>Hello, {{ userName }}!</h1>
+  <h3 *ngIf="totalReviews < 20">
+    You currently have {{ totalReviews }} reviews. Review at least 20 books to unlock personalized book recommendations!
+  </h3>
+  <h3 *ngIf="totalReviews >= 20">
+    Congratulations! You are eligible for personalized book recommendations.
+    <!--        <button (click)="requestRecommendations()" class="btn btn-primary">Get Personalized Recommendations</button>-->
+  </h3>
+  <h2>Yours reviews:</h2>
   <div class="row">
-    @for (book of displayedRecommendations; track book) {
+    @for (book of reviews; track book) {
       <div class="col-md-3">
         <app-book-preview [book]="book"></app-book-preview>
       </div>

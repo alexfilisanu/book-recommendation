@@ -15,7 +15,12 @@ import {BookPreviewComponent} from "../../../components/book-preview/book-previe
 export class BookRecommendationsComponent {
 
   public recommendations: any[] = [];
+  public displayedRecommendations: any[] = [];
   public bookTitle: string = '';
+  public currentPage: number = 1;
+  public totalBooks: number = 0;
+  public totalPages: number = 0;
+  private booksPerPage: number = 4;
 
   constructor(private route: ActivatedRoute, private bookService: BookService) {
   }
@@ -28,6 +33,7 @@ export class BookRecommendationsComponent {
     this.route.queryParams.subscribe(params => {
       const {title} = params;
       this.bookTitle = title;
+      this.currentPage = 1;
     });
   }
 
@@ -35,10 +41,33 @@ export class BookRecommendationsComponent {
     this.bookService.getBookRecommendation(isbn).subscribe({
       next: (response) => {
         this.recommendations = response.recommendations;
+        this.totalBooks = this.recommendations.length;
+        this.totalPages = Math.ceil(this.totalBooks / this.booksPerPage);
+        this.updateDisplayedRecommendations();
       },
       error: (error) => {
         console.error('Error fetching book recommendations', error);
       }
     });
+  }
+
+  private updateDisplayedRecommendations(): void {
+    const start = (this.currentPage - 1) * this.booksPerPage;
+    const end = start + this.booksPerPage;
+    this.displayedRecommendations = this.recommendations.slice(start, end);
+  }
+
+  public nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.updateDisplayedRecommendations();
+    }
+  }
+
+  public previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.updateDisplayedRecommendations();
+    }
   }
 }
