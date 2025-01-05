@@ -63,4 +63,8 @@ export class BookService {
   public submitReview(reviewData: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/book/review`, reviewData);
   }
+
+  public getUserRecommendation(userId: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/user/recommendations/${userId}`);
+  }
 }

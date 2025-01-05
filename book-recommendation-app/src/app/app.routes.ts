@@ -8,6 +8,7 @@ import {LoginComponent} from "./pages/auth/login/login.component";
 import {RegisterComponent} from "./pages/auth/register/register.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
 import {MyReviewsComponent} from "./pages/book-pages/my-reviews/my-reviews.component";
+import {PersonalizedRecommendationsComponent} from "./pages/book-pages/personalized-recommendations/personalized-recommendations.component";
 
 export const routes: Routes = [
   {
@@ -46,6 +47,10 @@ export const routes: Routes = [
       {
         path: 'my-reviews',
         component: MyReviewsComponent
+      },
+      {
+       path: 'user/recommendations/:userId',
+       component: PersonalizedRecommendationsComponent
       }
     ]
   },

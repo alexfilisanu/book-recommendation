@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {BookService} from "../book.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {NgIf} from "@angular/common";
 import {BooksPaginationComponent} from "../../../components/books-pagination/books-pagination.component";
 
@@ -24,7 +24,7 @@ export class MyReviewsComponent {
   public totalPages: number = 0;
   private booksPerPage: number = 4;
 
-  constructor(private bookService: BookService, private route: ActivatedRoute) {
+  constructor(private bookService: BookService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -71,5 +71,10 @@ export class MyReviewsComponent {
   public onPageChange(newPage: number): void {
     this.currentPage = newPage;
     this.getBooks();
+  }
+
+  public getPersonalizedRecommendations(): void {
+   this.router.navigate([`/user/recommendations/${this.userId}`])
+     .catch(error => console.error('Error navigating to personalized recommendations', error));
   }
 }

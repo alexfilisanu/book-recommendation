@@ -12,13 +12,17 @@
 <img class="bookshelf-img-container" src="../../../../assets/images/bookshelf.jpg" alt="bookshelf">
 <div class="books-container">
   <h1>Hello, {{ userName }}!</h1>
+
   <h3 *ngIf="totalReviews < 20">
     You currently have {{ totalReviews }} reviews. Review at least 20 books to unlock personalized book recommendations!
   </h3>
   <h3 *ngIf="totalReviews >= 20">
-    Congratulations! You are eligible for personalized book recommendations.
-    <!-- Get Personalized Recommendations -->
+    You reviewed {{ totalReviews }} books.
   </h3>
+  <button class="confirm-btn" *ngIf="totalReviews >= 20" (click)="getPersonalizedRecommendations()">
+    Get personalized book recommendations
+  </button>
+
   <h2>Yours reviews:</h2>
   <app-books-pagination
     [books]="reviews" [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="onPageChange($event)">
