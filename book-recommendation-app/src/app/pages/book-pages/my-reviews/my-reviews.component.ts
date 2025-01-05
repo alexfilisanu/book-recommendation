@@ -1,14 +1,14 @@
 import {Component} from '@angular/core';
-import {BookPreviewComponent} from "../../../components/book-preview/book-preview.component";
 import {BookService} from "../book.service";
 import {ActivatedRoute} from "@angular/router";
 import {NgIf} from "@angular/common";
+import {BooksPaginationComponent} from "../../../components/books-pagination/books-pagination.component";
 
 @Component({
   selector: 'app-my-reviews',
   imports: [
-    BookPreviewComponent,
-    NgIf
+    NgIf,
+    BooksPaginationComponent
   ],
   templateUrl: './my-reviews.component.html',
   standalone: true,
@@ -68,11 +68,8 @@ export class MyReviewsComponent {
     });
   }
 
-  public nextPage(): void {
-    this.getBooks(++this.currentPage);
-  }
-
-  public previousPage(): void {
-    this.getBooks(--this.currentPage);
+  public onPageChange(newPage: number): void {
+    this.currentPage = newPage;
+    this.getBooks();
   }
 }

@@ -1,15 +1,13 @@
 import {Component} from '@angular/core';
 import {BookService} from '../book.service';
 import {ActivatedRoute} from "@angular/router";
-import {ReactiveFormsModule} from "@angular/forms";
-import {BookPreviewComponent} from "../../../components/book-preview/book-preview.component";
+import {BooksPaginationComponent} from "../../../components/books-pagination/books-pagination.component";
 
 @Component({
   selector: 'app-books',
   standalone: true,
   imports: [
-    ReactiveFormsModule,
-    BookPreviewComponent
+    BooksPaginationComponent
   ],
   templateUrl: './books.component.html',
   styleUrl: './books.component.css'
@@ -59,11 +57,8 @@ export class BooksComponent {
     });
   }
 
-  public nextPage(): void {
-    this.getBooks(++this.currentPage);
-  }
-
-  public previousPage(): void {
-    this.getBooks(--this.currentPage);
+  public onPageChange(newPage: number): void {
+    this.currentPage = newPage;
+    this.getBooks(this.currentPage);
   }
 }
